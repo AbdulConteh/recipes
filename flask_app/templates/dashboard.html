@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        table {
+            border: black 3px solid;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1> Welcome {{user.first_name}} !</h1>
+            <a href="/recipes/new"> Create </a>
+            <a href="/logout"> Logout </a>
+        </div>
+        {% for recipes in recipe %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Under 30 Minutes?</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in recipe %}
+                <tr>
+                    <td>{{r.name}}</td>
+                    {% if r.under30 == 1 %}
+                    <td> Yes </td>
+                    { %else %}
+                    <td> No </td>
+                    {% endif %}
+                    <td> <a href="/recipes"> View Instructions </a> | <a href="/recipes/edit"> Edit </a> | </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {%endfor%}
+    </div>
+</body>
+</html>
